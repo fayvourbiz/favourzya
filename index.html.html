@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favour Zya | Virtual Assistant Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A3A5C;
+    --accent: #1F6FBF;
+    --accent-light: #4A9FEF;
+    --gold: #C9A84C;
+    --dark: #0D1B2A;
+    --mid: #4A6080;
+    --light: #EEF4FB;
+    --white: #FFFFFF;
+    --bg: #F8FAFD;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,58,92,0.97);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--white); letter-spacing: 1px;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, #0D1B2A 60%, #1A3A5C 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 40px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(31,111,191,0.2) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.1) 0%, transparent 50%);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold); font-size: 12px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 20px; margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 90px);
+    font-weight: 900; color: var(--white);
+    line-height: 1.05; margin-bottom: 16px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 18px; color: rgba(255,255,255,0.65);
+    font-weight: 300; margin-bottom: 40px; letter-spacing: 0.3px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-contact {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: center; margin-bottom: 40px;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-contact a, .hero-contact span {
+    color: rgba(255,255,255,0.7); font-size: 13px;
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+  }
+  .hero-contact a:hover { color: var(--gold); }
+  .dot { color: var(--gold); }
+  .hero-btns {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 13px 32px; border-radius: 4px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    letter-spacing: 0.5px; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #e0bc5a; transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.3); color: var(--white);
+    padding: 13px 32px; border-radius: 4px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .scroll-hint {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.3); font-size: 12px; letter-spacing: 1px;
+    animation: bounce 2s infinite;
+  }
+
+  /* SECTIONS */
+  section { padding: 90px 40px; max-width: 960px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700; color: var(--navy);
+    margin-bottom: 40px; line-height: 1.2;
+  }
+  .divider {
+    width: 48px; height: 3px;
+    background: var(--gold); margin-bottom: 40px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+  }
+  .about-text p {
+    font-size: 16px; line-height: 1.8; color: var(--mid);
+    margin-bottom: 16px;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .stat-card {
+    background: var(--white);
+    border: 1px solid #e0e8f0;
+    border-left: 3px solid var(--accent);
+    padding: 22px 20px; border-radius: 6px;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700; color: var(--navy);
+    line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--mid); margin-top: 4px; }
+
+  /* SERVICES */
+  .services-bg { background: var(--navy); padding: 90px 0; }
+  .services-inner { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+  .services-inner .section-title { color: var(--white); }
+  .services-inner .section-label { color: var(--gold); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .service-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 28px 24px; border-radius: 8px;
+    transition: all 0.3s;
+  }
+  .service-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .service-icon { font-size: 28px; margin-bottom: 14px; }
+  .service-title {
+    font-size: 14px; font-weight: 600; color: var(--white);
+    margin-bottom: 8px;
+  }
+  .service-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* EXPERIENCE */
+  .exp-item {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 30px; margin-bottom: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid #e0e8f0;
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-dates {
+    font-size: 12px; color: var(--gold); font-weight: 600;
+    letter-spacing: 0.5px; padding-top: 4px;
+  }
+  .exp-org { font-size: 13px; color: var(--mid); margin-top: 4px; }
+  .exp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .exp-company {
+    font-size: 13px; color: var(--accent); font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 14px; color: var(--mid); line-height: 1.7;
+    padding-left: 16px; position: relative; margin-bottom: 6px;
+  }
+  .exp-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--gold); font-size: 12px;
+  }
+
+  /* TOOLS */
+  .tools-bg { background: var(--light); padding: 90px 0; }
+  .tools-inner { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+  .tools-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .tool-row {
+    background: var(--white); border: 1px solid #dce8f5;
+    border-radius: 8px; padding: 16px 20px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .tool-cat {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--accent);
+    min-width: 90px; padding-top: 1px;
+  }
+  .tool-val { font-size: 13px; color: var(--mid); line-height: 1.5; }
+
+  /* WHY */
+  .why-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  .why-card {
+    background: var(--white); border: 1px solid #dce8f5;
+    border-radius: 8px; padding: 28px 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+    transition: box-shadow 0.2s;
+  }
+  .why-card:hover { box-shadow: 0 6px 24px rgba(31,111,191,0.1); }
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 900; color: var(--light);
+    line-height: 1; min-width: 36px;
+  }
+  .why-text { font-size: 14px; color: var(--mid); line-height: 1.7; }
+  .why-text strong { color: var(--navy); display: block; margin-bottom: 4px; }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .edu-card {
+    background: var(--white); border: 1px solid #dce8f5;
+    border-top: 3px solid var(--navy);
+    border-radius: 8px; padding: 24px 22px;
+  }
+  .edu-title { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .edu-sub { font-size: 13px; color: var(--mid); line-height: 1.6; }
+  .edu-year {
+    display: inline-block; margin-top: 10px;
+    background: var(--light); color: var(--accent);
+    font-size: 11px; font-weight: 600; padding: 3px 10px;
+    border-radius: 10px;
+  }
+
+  /* CTA */
+  .cta-bg {
+    background: linear-gradient(135deg, var(--navy), #0D1B2A);
+    padding: 90px 40px; text-align: center;
+  }
+  .cta-bg .section-title { color: var(--white); margin-bottom: 16px; }
+  .cta-bg p { color: rgba(255,255,255,0.6); font-size: 16px; margin-bottom: 36px; }
+  .cta-links {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .cta-link {
+    color: rgba(255,255,255,0.5); font-size: 13px;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .cta-link:hover { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: #080f16; text-align: center;
+    padding: 20px; font-size: 12px; color: rgba(255,255,255,0.25);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .about-grid, .services-grid, .tools-grid,
+    .why-grid, .edu-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 6px; }
+    .services-bg .services-inner, .tools-bg .tools-inner { padding: 0 20px; }
+    .cta-bg { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Favour Zya</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#experience">Experience</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div style="position:relative;z-index:1;">
+    <div class="hero-tag">Available for US Remote Roles</div>
+    <h1>Favour <span>Zya</span></h1>
+    <p class="hero-sub">Virtual Assistant &nbsp;·&nbsp; HR Operations &nbsp;·&nbsp; Administrative Support</p>
+    <div class="hero-contact">
+      <span>📍 Akwa Ibom, Nigeria</span>
+      <span class="dot">·</span>
+      <a href="mailto:fayvourbiz@gmail.com">fayvourbiz@gmail.com</a>
+      <span class="dot">·</span>
+      <a href="tel:+2347026913443">+234-7026913443</a>
+      <span class="dot">·</span>
+      <a href="https://linkedin.com/in/favourzya" target="_blank">LinkedIn</a>
+    </div>
+    <div class="hero-btns">
+      <a href="mailto:fayvourbiz@gmail.com" class="btn-primary">Hire Me</a>
+      <a href="https://favourzyaportfolio.lovable.app" target="_blank" class="btn-outline">View Portfolio</a>
+    </div>
+  </div>
+  <div class="scroll-hint">↓ scroll</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <p class="section-label">Who I Am</p>
+    <h2 class="section-title">Organized. Reliable.<br>Remote-Ready.</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I am a Virtual Assistant and Administrative professional with 3+ years of experience providing remote administrative, HR, and financial support across startup and institutional environments.</p>
+      <p>I bring something most VAs don't — a combined background in administration, HR operations, and accounting. That means I can support not just your calendar and inbox but your people processes and financial admin too.</p>
+      <p>I am comfortable working across US time zones, proactive about communication, and I take full ownership of everything I touch.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Industries Served</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">US</div>
+        <div class="stat-label">Remote Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">EST</div>
+        <div class="stat-label">Available Hours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="services-bg" id="services">
+  <div class="services-inner">
+    <div class="reveal">
+      <p class="section-label">What I Do</p>
+      <h2 class="section-title" style="color:white;">Services I Offer</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-icon">📧</div>
+        <div class="service-title">Email & Calendar Management</div>
+        <div class="service-desc">Inbox organization, scheduling, follow-ups, appointment coordination across time zones</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <div class="service-title">Administrative Support</div>
+        <div class="service-desc">Data entry, document drafting, filing, correspondence, and reporting</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👥</div>
+        <div class="service-title">HR & Onboarding</div>
+        <div class="service-desc">Offer letters, onboarding docs, employee records, and recruitment coordination</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💰</div>
+        <div class="service-title">Payroll & Finance Admin</div>
+        <div class="service-desc">Payroll processing, expense tracking, bookkeeping, and financial reporting</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <div class="service-title">Recruitment Support</div>
+        <div class="service-desc">Job postings, resume screening, interview scheduling, ATS management</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <div class="service-title">Research & Reporting</div>
+        <div class="service-desc">Market research, data compilation, weekly reports, and dashboards</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label">My Background</p>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div>
+      <div class="exp-dates">Feb 2026 – May 2026</div>
+      <div class="exp-org">New York, USA · Remote</div>
+    </div>
+    <div>
+      <div class="exp-title">Virtual Assistant · HR & Admin Intern</div>
+      <div class="exp-company">GAOTek Inc.</div>
+      <ul class="exp-bullets">
+        <li>Managed recruitment workflows including job postings, screening, interview scheduling, and candidate communications across time zones</li>
+        <li>Maintained ATS and employee records; coordinated onboarding documentation and new hire setup</li>
+        <li>Prepared weekly HR and administrative reports using Excel and Google Sheets</li>
+        <li>Conducted employment verification and handled correspondence independently</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div>
+      <div class="exp-dates">Feb 2025 – Present</div>
+      <div class="exp-org">Uyo, Nigeria · Startup</div>
+    </div>
+    <div>
+      <div class="exp-title">VA · Accountant · HR Officer</div>
+      <div class="exp-company">Daveshoope Webmasters Inc.</div>
+      <ul class="exp-bullets">
+        <li>Provided end-to-end VA, HR, and financial support for a 20-person tech startup</li>
+        <li>Managed calendars, staff documentation, internal communications, and daily operations</li>
+        <li>Coordinated new hire onboarding including offer letters, agreements, and system setup</li>
+        <li>Processed monthly payroll, tracked expenses, and prepared management reports</li>
+        <li>Drafted employee handbooks, HR policies, and compliance documentation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div>
+      <div class="exp-dates">Mar 2022 – Jan 2025</div>
+      <div class="exp-org">Uyo, Nigeria</div>
+    </div>
+    <div>
+      <div class="exp-title">HR Assistant · Admin Officer</div>
+      <div class="exp-company">Teeves International Schools</div>
+      <ul class="exp-bullets">
+        <li>Managed staff records, scheduling, and administrative operations</li>
+        <li>Coordinated onboarding, maintained employment records, and supported termination documentation</li>
+        <li>Reviewed timesheets, tracked attendance, and handled correspondence and filing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<div class="tools-bg" id="tools">
+  <div class="tools-inner">
+    <div class="reveal">
+      <p class="section-label">Tech Stack</p>
+      <h2 class="section-title">Tools & Systems</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="tools-grid reveal">
+      <div class="tool-row"><span class="tool-cat">Productivity</span><span class="tool-val">Google Workspace, Microsoft Office (Advanced Excel & Word)</span></div>
+      <div class="tool-row"><span class="tool-cat">Communication</span><span class="tool-val">Zoom, Slack, Google Meet, Email Management</span></div>
+      <div class="tool-row"><span class="tool-cat">HR & Payroll</span><span class="tool-val">Zoho People, WorkforceNG, QuickBooks, Odoo, Wave</span></div>
+      <div class="tool-row"><span class="tool-cat">Project Mgmt</span><span class="tool-val">Jira, Trello, Notion, Asana</span></div>
+      <div class="tool-row"><span class="tool-cat">Finance</span><span class="tool-val">QuickBooks, Odoo, Wave, Advanced Excel</span></div>
+      <div class="tool-row"><span class="tool-cat">Other</span><span class="tool-val">Canva, AI Tools, Google Forms, Calendly</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY HIRE ME -->
+<section>
+  <div class="reveal">
+    <p class="section-label">The Difference</p>
+    <h2 class="section-title">Why Work With Me</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-text"><strong>Triple Skill Set</strong>VA, HR, and accounting combined — most assistants offer only one.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-text"><strong>Real US Remote Experience</strong>Proven remote work with GAOTek Inc., New York — not just a claim.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-text"><strong>US Hours Available</strong>EST/PST coverage from Nigeria with zero timezone conflicts.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <div class="why-text"><strong>Full Ownership</strong>I take tasks end to end. No micromanagement needed.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">05</div>
+      <div class="why-text"><strong>Startup Tested</strong>Built processes from scratch at a 20-person tech startup. I thrive in lean environments.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">06</div>
+      <div class="why-text"><strong>Professional Standards</strong>Every task I touch reflects the organization I represent.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<div class="tools-bg">
+  <div class="tools-inner">
+    <div class="reveal">
+      <p class="section-label">Qualifications</p>
+      <h2 class="section-title">Education & Certifications</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <div class="edu-title">B.Sc. Business Administration</div>
+        <div class="edu-sub">Second Class Upper<br>Akwa Ibom State University, Nigeria</div>
+        <span class="edu-year">2020</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-title">ICAN Certification</div>
+        <div class="edu-sub">Institute of Chartered Accountants of Nigeria</div>
+        <span class="edu-year">In Progress</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-title">Data Analytics</div>
+        <div class="edu-sub">TechCrush Certification</div>
+        <span class="edu-year">2025</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-title">Advanced AI Mastery</div>
+        <div class="edu-sub">Daveshoope AI Academy</div>
+        <span class="edu-year">2025</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-bg" id="contact">
+  <div class="reveal">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Ready to Work Together?</h2>
+    <p>I am available for US remote roles and open to full-time or contract opportunities.</p>
+    <a href="mailto:fayvourbiz@gmail.com" class="btn-primary">Send Me an Email</a>
+    <div class="cta-links">
+      <a href="tel:+2347026913443" class="cta-link">+234-7026913443</a>
+      <span style="color:rgba(255,255,255,0.2)">·</span>
+      <a href="https://linkedin.com/in/favourzya" target="_blank" class="cta-link">linkedin.com/in/favourzya</a>
+      <span style="color:rgba(255,255,255,0.2)">·</span>
+      <a href="https://favourzyaportfolio.lovable.app" target="_blank" class="cta-link">favourzyaportfolio.lovable.app</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Favour Zya · All rights reserved</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
